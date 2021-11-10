@@ -69,10 +69,6 @@ class App:
         subMenu.add_command(label='Duplicate', command=self.duplicate)
         subMenu.add_command(label='Exit', command=exit)
 
-        editMenu = tk.Menu(menu)
-        menu.add_cascade(label='Edit', menu=editMenu)
-        editMenu.add_command(label='Histogram for grayscale', command=self.hist)
-        editMenu.add_command(label='Histogram for colorful images', command=self.color_hist)
         new_window.mainloop()
 
     def load_image_internal(self):
