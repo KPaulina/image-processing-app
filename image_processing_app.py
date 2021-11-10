@@ -25,11 +25,11 @@ class App:
         editMenu = tk.Menu(menu)
         menu.add_cascade(label='Edit', menu=editMenu)
         editMenu.add_command(label='Histogram', command=self.histogram)
-
+        editMenu.add_command (label='Histogram equalization', command=self.histogram_equalization)
 
     def load_image(self):
         '''
-        Funkcja służąca do ładowania obrazka
+        Function used to load image
         '''
         global my_image
         global path
@@ -51,7 +51,7 @@ class App:
 
     def duplicate(self):
         '''
-        Funkcja służąca do duplikacji obrazka
+        Function used to duplicate image
         '''
         new_window = Toplevel(self.root)
         new_window.title('Nowy duplikat')
@@ -76,6 +76,10 @@ class App:
         new_window.mainloop()
 
     def load_image_internal(self):
+        '''
+        Function used to load image in a new window
+        :return: image
+        '''
         global internal_path
         count = 0
         internal_path = os.getcwd()
@@ -102,7 +106,7 @@ class App:
 
     def open_new_image(self):
         '''
-        Funkcja  w któej można otworzyć nowe okno z obrazkiem
+        Function used to load a new image
         '''
         new_image_window = Toplevel(self.root)
         new_image_window.title('New window')
@@ -129,13 +133,12 @@ class App:
 
         editMenu = tk.Menu(internal_menu)
         internal_menu.add_cascade(label='Edit', menu=editMenu)
-        editMenu.add_command(label='Histogram for grayscale', command=self.internal_hist)
-        editMenu.add_command(label='Histogram for colorful images', command=self.internal_color_hist)
+
 
     #metoda na zapisywanie plików
     def save_file(self):
         '''
-        Funkcja za pomocą której można zapisać obrazek w wybranym formacie
+        Function thanks to which image can be save with a chosen extension
         '''
         img = cv.imread(path)
         RGB_img = cv.cvtColor(img, cv.COLOR_BGR2RGB)
@@ -154,10 +157,15 @@ class App:
         img = cv.imread(path)
         image_processing_filters.histogram(self.root, img)
 
+    def histogram_equalization(self):
+        img = cv.imread(path)
+        image_processing_filters.histogram_equlization(self.root, img)
+
 
 def main():
     root = tk.Tk()
-    root.title('Images processing')
+    root.title('Program for image processing')
+    root.geometry("500x500")
     app = App(root)
     root.mainloop()
 

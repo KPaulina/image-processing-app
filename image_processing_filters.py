@@ -1,10 +1,12 @@
 import cv2 as cv
+import cv2.cv2 as cv
 import tkinter as tk
 import matplotlib as plt
 from matplotlib import pyplot as plt
 from PIL import ImageTk
-from tkinter import Toplevel
+import numpy as np
 from PIL import Image
+
 
 def histogram(root, img):
     img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
@@ -28,3 +30,24 @@ def histogram(root, img):
     window.protocol("WM_DELETE_WINDOW", close_window)
     root.wait_window(window)
 
+
+def histogram_equlization(root, img):
+    img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+    equ = cv.equalizeHist(img)
+    res = np.hstack((img, equ))
+    cv.imwrite('result_img.png', res)
+
+    window = tk.Toplevel(master=root)
+    window.title("Histogram equalization")
+    window.transient(root)
+    window.grab_set()
+
+    img_res = ImageTk.PhotoImage(Image.open("result_img.png"))
+    lbl2 = tk.Label(window, image=img_res)
+    lbl2.pack()
+
+    def close_window():
+        window.destroy()
+
+    window.protocol("WM_DELETE_WINDOW", close_window)
+    root.wait_window(window)
