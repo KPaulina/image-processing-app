@@ -9,6 +9,11 @@ from PIL import Image
 
 
 def histogram(root, img):
+    '''
+    Function made to create histogram and show it in the app
+    :param root:
+    :param img:
+    '''
     img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
     histg = cv.calcHist([img], [0], None, [256], [0, 256])
     plt.plot(histg)
@@ -32,6 +37,9 @@ def histogram(root, img):
 
 
 def histogram_equlization(root, img):
+    '''
+    function made to create histogram equalization
+    '''
     img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
     equ = cv.equalizeHist(img)
     res = np.hstack((img, equ))
