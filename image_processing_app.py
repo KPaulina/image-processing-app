@@ -157,7 +157,7 @@ class App:
 
 def main():
     root = tk.Tk()
-    root.title('Program na Algorytmy przetwarzania obrazów')
+    root.title('Images processing')
     app = App(root)
     root.mainloop()
 
