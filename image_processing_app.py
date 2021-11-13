@@ -25,7 +25,8 @@ class App:
         editMenu = tk.Menu(menu)
         menu.add_cascade(label='Edit', menu=editMenu)
         editMenu.add_command(label='Histogram', command=self.histogram)
-        editMenu.add_command (label='Histogram equalization', command=self.histogram_equalization)
+        editMenu.add_command(label='Histogram equalization', command=self.histogram_equalization)
+        editMenu.add_command(label='Median blur', command=self.median_blur)
 
     def load_image(self):
         '''
@@ -69,6 +70,11 @@ class App:
         subMenu.add_command(label='Duplicate', command=self.duplicate)
         subMenu.add_command(label='Exit', command=exit)
 
+        editMenu = tk.Menu(menu)
+        menu.add_cascade(label='Edit', menu=editMenu)
+        editMenu.add_command(label='Histogram for grayscale', command=self.histogram)
+        editMenu.add_command (label='Histogram equalization', command=self.histogram_equalization)
+        editMenu.add_command(label='Median blur', command=self.median_blur)
         new_window.mainloop()
 
     def load_image_internal(self):
@@ -156,6 +162,10 @@ class App:
     def histogram_equalization(self):
         img = cv.imread(path)
         image_processing_filters.histogram_equlization(self.root, img)
+
+    def median_blur(self):
+        img = cv.imread(path)
+        image_processing_filters.median_blur(self.root, img)
 
 
 def main():

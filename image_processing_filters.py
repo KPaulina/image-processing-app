@@ -59,3 +59,27 @@ def histogram_equlization(root, img):
 
     window.protocol("WM_DELETE_WINDOW", close_window)
     root.wait_window(window)
+
+def median_blur(root, img):
+    '''
+    Median filter for images
+    '''
+    img = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
+    img_rst = cv.medianBlur(img, 5)
+    cv.imwrite('result_img_1.png', img_rst)
+
+    window = tk.Toplevel(master=root)
+    window.title("Median blur")
+    window.transient(root)
+    window.grab_set()
+
+    img_res = ImageTk.PhotoImage(Image.open("result_img_1.png"))
+    lbl2 = tk.Label(window, image=img_res)
+    lbl2.pack()
+    lbl2.imnage = img_res
+
+    def close_window():
+        window.destroy()
+
+        window.protocol("WM_DELETE_WINDOW", close_window)
+        root.wait_window(window)
