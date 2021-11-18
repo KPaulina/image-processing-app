@@ -26,7 +26,7 @@ class App:
         menu.add_cascade(label='Edit', menu=editMenu)
         editMenu.add_command(label='Histogram', command=self.histogram)
         editMenu.add_command(label='Histogram equalization', command=self.histogram_equalization)
-        editMenu.add_command(label='Rozciąganie histogramu', command=self.rozciaganie_histogramu)
+        editMenu.add_command(label='Streching', command=self.rozciaganie_histogramu)
         editMenu.add_command(label='Median blur', command=self.median_blur)
 
     def load_image(self):
